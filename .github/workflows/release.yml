@@ -8,6 +8,10 @@ on:
         description: Existing version tag to publish
         required: true
         default: v1.0.0
+      verify_only:
+        description: Verify the published assets without rebuilding
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -23,16 +27,24 @@ jobs:
       TAG: ${{ inputs.tag || github.ref_name }}
     steps:
       - name: Install build and test tools
+        if: ${{ !inputs.verify_only }}
         run: |
           apt-get update
           apt-get install -y --no-install-recommends ca-certificates git gh build-essential cmake \
             libssl-dev libsqlite3-dev libcpp-httplib-dev nlohmann-json3-dev libsodium-dev \
             libtorrent-rasterbar-dev libboost-system-dev python3-venv ffmpeg chromium nginx openssl
+      - name: Install verification runtime
+        if: ${{ inputs.verify_only }}
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends ca-certificates git gh python3 \
+            libssl3t64 libsqlite3-0 libcpp-httplib0.18 libsodium23 libtorrent-rasterbar2.0t64
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           ref: ${{ inputs.tag || github.ref }}
           fetch-depth: 1
       - name: Build and test
+        if: ${{ !inputs.verify_only }}
         shell: bash
         run: |
           [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
@@ -40,6 +52,7 @@ jobs:
           .venv/bin/pip install --disable-pip-version-check -r tests/requirements.txt
           PYTHON="$PWD/.venv/bin/python" bash scripts/build.sh
       - name: Package and verify
+        if: ${{ !inputs.verify_only }}
         run: |
           .venv/bin/python scripts/package.py --output dist > build-release/package.json
           .venv/bin/python scripts/copyright-package.py --output dist > build-release/copyright.json
@@ -51,6 +64,7 @@ jobs:
           (output/'SHA256SUMS').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name+'\n' for p in sorted(output.iterdir()) if p.is_file()))
           PY
       - name: Publish GitHub release
+        if: ${{ !inputs.verify_only }}
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
@@ -61,22 +75,24 @@ jobs:
             gh release create "$TAG" dist/* --verify-tag --title "轻量级视频共享与传输软件 V1.0" --notes-file docs/release-notes.md
           fi
           gh release view "$TAG" --json url,tagName,isDraft,isPrerelease,assets > build-release/release-status.json
-      - name: Record publication status
-        shell: bash
+      - name: Verify published assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         run: |
+          gh release view "$TAG" --json url,tagName,isDraft,assets > release-status.json
+          gh release download "$TAG" --dir build-verified-assets
           python3 - <<'PY'
-          import json, pathlib, os
-          p=pathlib.Path('build-release/release-status.json'); data=json.loads(p.read_text())
+          import hashlib, json, os, pathlib, subprocess
+          data=json.loads(pathlib.Path('release-status.json').read_text())
           assert data['tagName']==os.environ['TAG'] and not data['isDraft']
-          names=[a['name'] for a in data['assets']]
-          assert any(n.endswith('.tar.gz') for n in names) and any(n.endswith('.zip') for n in names) and 'SHA256SUMS' in names
-          data['verification']='GitHub API confirmed published release and attached archives'
-          p.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+          folder=pathlib.Path('build-verified-assets')
+          for line in (folder/'SHA256SUMS').read_text().splitlines():
+              digest,name=line.split('  ',1)
+              assert pathlib.Path(name).name==name
+              assert hashlib.sha256((folder/name).read_bytes()).hexdigest()==digest
+          assert len(list(folder.glob('*copyright*.zip')))==1
+          archive=next(folder.glob('*.tar.gz'))
+          subprocess.run(['python3','tests/package_smoke.py',str(archive)],check=True)
+          print('Published release and downloaded assets verified:',data['url'])
           PY
-          branch="release-status/$TAG"
-          parent=()
-          if git fetch origin "refs/heads/$branch" 2>/dev/null; then parent=(-p FETCH_HEAD); fi
-          blob=$(git hash-object -w build-release/release-status.json)
-          tree=$(printf '100644 blob %s\trelease-status.json\n' "$blob" | git mktree)
-          commit=$(git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit-tree "$tree" "${parent[@]}" -m "Record publication of $TAG")
-          git push origin "$commit:refs/heads/$branch"
