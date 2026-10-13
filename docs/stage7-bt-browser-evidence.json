@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "browser": "154.0.8037.57",
+  "transport": "actual local SOCKS5 authenticated forwarding",
+  "verified_bytes": 2452570,
+  "piece_count": 38,
+  "file_sha256": "d9fe6a433c97978b5450d366d3493842a1c97be12c8b4d1c2b2d1595671bf30a",
+  "sandbox": false,
+  "sandbox_scope": "generated local fixture only"
+}

@@ -1,0 +1,62 @@
+{
+  "started_utc": "2026-10-12T14:05:26.006631+00:00",
+  "fixture_sha256": "6dec062db5cfbbece54896cd436b0750c231e938e0bb7b6f546c1cbd7ce0bb03",
+  "browser": "154.0.8037.57",
+  "sandbox": false,
+  "sandbox_scope": "generated local test fixture only",
+  "tests": [
+    {
+      "name": "upload_grant_native_play_seek_resume",
+      "passed": true,
+      "loaded_metadata_seconds": 0.0628,
+      "time_to_currentTime_over_one_second": 1.0313,
+      "decoded_frames": 30,
+      "seek_target_seconds": 6,
+      "persisted_position_seconds": 6.262202,
+      "resumed_position_seconds": 6.262202,
+      "observed_events": {
+        "waiting": 1,
+        "stalled": 0,
+        "playing": 2
+      },
+      "media_responses": [
+        {
+          "status": 403,
+          "range": "bytes=0-20",
+          "content_range": null
+        },
+        {
+          "status": 206,
+          "range": "bytes=0-",
+          "content_range": "bytes 0-355417/355418"
+        },
+        {
+          "status": 206,
+          "range": "bytes=0-",
+          "content_range": "bytes 0-355417/355418"
+        }
+      ],
+      "video": {
+        "width": 320,
+        "height": 180,
+        "duration": 12
+      }
+    },
+    {
+      "name": "duplicate_invalid_cancel_xss",
+      "passed": true,
+      "late_abort_file_already_published": false
+    },
+    {
+      "name": "browser_password_and_logout",
+      "passed": true
+    },
+    {
+      "name": "resumable_browser_disconnect_reload",
+      "passed": true,
+      "confirmed_before_reload_bytes": 1048576,
+      "first_continued_offset": 1048576,
+      "sha256": "40cc601c0f921521cc3c3a00923f8dfea244f971fca7647dd5fe307cd7cedd49"
+    }
+  ]
+}

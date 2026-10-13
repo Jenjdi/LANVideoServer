@@ -1,0 +1,422 @@
+{
+  "software": "轻量级视频共享与传输软件 V1.0",
+  "recorded_utc": "2026-10-13T00:54:31.864921+00:00",
+  "user_date": "2026-10-13",
+  "release": {
+    "file": "build-release/Testing/review-release-results.xml",
+    "runners": 15,
+    "failures": 0,
+    "skipped": 0,
+    "elapsed_seconds_rounded": 320,
+    "results": [
+      {
+        "runner": "integration",
+        "passed": true,
+        "elapsed_seconds": 0.860728
+      },
+      {
+        "runner": "auth_integration",
+        "passed": true,
+        "elapsed_seconds": 15.6118
+      },
+      {
+        "runner": "media_integration",
+        "passed": true,
+        "elapsed_seconds": 16.3114
+      },
+      {
+        "runner": "browser_integration",
+        "passed": true,
+        "elapsed_seconds": 19.5194
+      },
+      {
+        "runner": "uploads_integration",
+        "passed": true,
+        "elapsed_seconds": 4.88608
+      },
+      {
+        "runner": "bt_integration",
+        "passed": true,
+        "elapsed_seconds": 51.2458
+      },
+      {
+        "runner": "browser_bt",
+        "passed": true,
+        "elapsed_seconds": 10.7673
+      },
+      {
+        "runner": "bt_stream_integration",
+        "passed": true,
+        "elapsed_seconds": 70.7006
+      },
+      {
+        "runner": "browser_bt_stream",
+        "passed": true,
+        "elapsed_seconds": 31.9651
+      },
+      {
+        "runner": "shares_integration",
+        "passed": true,
+        "elapsed_seconds": 35.5102
+      },
+      {
+        "runner": "remote_integration",
+        "passed": true,
+        "elapsed_seconds": 18.4462
+      },
+      {
+        "runner": "browser_remote",
+        "passed": true,
+        "elapsed_seconds": 8.93188
+      },
+      {
+        "runner": "monitor_integration",
+        "passed": true,
+        "elapsed_seconds": 5.78272
+      },
+      {
+        "runner": "delivery_integration",
+        "passed": true,
+        "elapsed_seconds": 0.442467
+      },
+      {
+        "runner": "security_regression",
+        "passed": true,
+        "elapsed_seconds": 29.6021
+      }
+    ],
+    "executed_cases": 141,
+    "case_counts": [
+      {
+        "runner": "integration",
+        "executed_cases": 8
+      },
+      {
+        "runner": "auth_integration",
+        "executed_cases": 23
+      },
+      {
+        "runner": "media_integration",
+        "executed_cases": 26
+      },
+      {
+        "runner": "browser_integration",
+        "executed_cases": 5
+      },
+      {
+        "runner": "uploads_integration",
+        "executed_cases": 7
+      },
+      {
+        "runner": "bt_integration",
+        "executed_cases": 10
+      },
+      {
+        "runner": "browser_bt",
+        "executed_cases": 1
+      },
+      {
+        "runner": "bt_stream_integration",
+        "executed_cases": 10
+      },
+      {
+        "runner": "browser_bt_stream",
+        "executed_cases": 1
+      },
+      {
+        "runner": "shares_integration",
+        "executed_cases": 10
+      },
+      {
+        "runner": "remote_integration",
+        "executed_cases": 13
+      },
+      {
+        "runner": "browser_remote",
+        "executed_cases": 1
+      },
+      {
+        "runner": "monitor_integration",
+        "executed_cases": 8
+      },
+      {
+        "runner": "delivery_integration",
+        "executed_cases": 3
+      },
+      {
+        "runner": "security_regression",
+        "executed_cases": 15
+      }
+    ],
+    "elapsed_seconds": 320.59,
+    "command": "ctest --test-dir build-release --output-on-failure --output-junit Testing/review-release-results.xml",
+    "binary_sha256": "1d0d845391e55d3322e88039a8a60627b37fc7cda109ab2865db201388151909"
+  },
+  "sanitizers": {
+    "flags": [
+      "AddressSanitizer",
+      "UndefinedBehaviorSanitizer"
+    ],
+    "options": {
+      "ASAN": "detect_leaks=1:abort_on_error=1",
+      "UBSAN": "halt_on_error=1:print_stacktrace=1"
+    },
+    "six_runner_run": {
+      "file": "build-sanitize/Testing/sanitize-final-results.xml",
+      "runners": 6,
+      "failures": 0,
+      "skipped": 0,
+      "elapsed_seconds_rounded": 168,
+      "results": [
+        {
+          "runner": "auth_integration",
+          "passed": true,
+          "elapsed_seconds": 17.5882
+        },
+        {
+          "runner": "media_integration",
+          "passed": true,
+          "elapsed_seconds": 18.888
+        },
+        {
+          "runner": "uploads_integration",
+          "passed": true,
+          "elapsed_seconds": 5.78582
+        },
+        {
+          "runner": "bt_stream_integration",
+          "passed": true,
+          "elapsed_seconds": 73.3341
+        },
+        {
+          "runner": "remote_integration",
+          "passed": true,
+          "elapsed_seconds": 21.401
+        },
+        {
+          "runner": "security_regression",
+          "passed": true,
+          "elapsed_seconds": 31.4067
+        }
+      ]
+    },
+    "executed_unique_cases": 94,
+    "bt_scheduler_fix_retest": {
+      "file": "build-sanitize/Testing/sanitize-bt-fix-results.xml",
+      "runners": 1,
+      "failures": 0,
+      "skipped": 0,
+      "elapsed_seconds_rounded": 69,
+      "results": [
+        {
+          "runner": "bt_stream_integration",
+          "passed": true,
+          "elapsed_seconds": 69.8461
+        }
+      ]
+    },
+    "scope": "Application instrumented; external shared libraries not rebuilt. Six-runner check preceded the final BT deadline change; affected BT stream runner was then rebuilt and rerun.",
+    "diagnostic_reports": 0
+  },
+  "bt_browser_measurement": {
+    "recorded_utc": "2026-10-13T00:48:51.528941+00:00",
+    "startup_seconds": 5.941516752001917,
+    "seek_seconds": 13.345613268000307,
+    "verified_progress_at_playback_start": 0.07205995613537826,
+    "decoded_frames_at_start": 32,
+    "waiting_events": 5,
+    "stalled_events": 0
+  },
+  "prior_full_runs": [
+    {
+      "file": "build-release/Testing/review-results.xml",
+      "runners": 15,
+      "failures": 2,
+      "skipped": 0,
+      "elapsed_seconds_rounded": 347,
+      "results": [
+        {
+          "runner": "integration",
+          "passed": true,
+          "elapsed_seconds": 0.799458
+        },
+        {
+          "runner": "auth_integration",
+          "passed": true,
+          "elapsed_seconds": 14.5243
+        },
+        {
+          "runner": "media_integration",
+          "passed": true,
+          "elapsed_seconds": 16.6854
+        },
+        {
+          "runner": "browser_integration",
+          "passed": true,
+          "elapsed_seconds": 19.9334
+        },
+        {
+          "runner": "uploads_integration",
+          "passed": true,
+          "elapsed_seconds": 4.75589
+        },
+        {
+          "runner": "bt_integration",
+          "passed": true,
+          "elapsed_seconds": 50.9814
+        },
+        {
+          "runner": "browser_bt",
+          "passed": true,
+          "elapsed_seconds": 10.8242
+        },
+        {
+          "runner": "bt_stream_integration",
+          "passed": true,
+          "elapsed_seconds": 69.7418
+        },
+        {
+          "runner": "browser_bt_stream",
+          "passed": true,
+          "elapsed_seconds": 51.5531
+        },
+        {
+          "runner": "shares_integration",
+          "passed": true,
+          "elapsed_seconds": 35.0991
+        },
+        {
+          "runner": "remote_integration",
+          "passed": true,
+          "elapsed_seconds": 18.2575
+        },
+        {
+          "runner": "browser_remote",
+          "passed": true,
+          "elapsed_seconds": 9.03307
+        },
+        {
+          "runner": "monitor_integration",
+          "passed": true,
+          "elapsed_seconds": 5.83905
+        },
+        {
+          "runner": "delivery_integration",
+          "passed": false,
+          "elapsed_seconds": 0.0805042
+        },
+        {
+          "runner": "security_regression",
+          "passed": false,
+          "elapsed_seconds": 39.4817
+        }
+      ]
+    },
+    {
+      "file": "build-release/Testing/review-final-results.xml",
+      "runners": 15,
+      "failures": 1,
+      "skipped": 0,
+      "elapsed_seconds_rounded": 344,
+      "results": [
+        {
+          "runner": "integration",
+          "passed": true,
+          "elapsed_seconds": 0.785119
+        },
+        {
+          "runner": "auth_integration",
+          "passed": true,
+          "elapsed_seconds": 15.065
+        },
+        {
+          "runner": "media_integration",
+          "passed": true,
+          "elapsed_seconds": 16.7141
+        },
+        {
+          "runner": "browser_integration",
+          "passed": true,
+          "elapsed_seconds": 19.4901
+        },
+        {
+          "runner": "uploads_integration",
+          "passed": true,
+          "elapsed_seconds": 4.84054
+        },
+        {
+          "runner": "bt_integration",
+          "passed": true,
+          "elapsed_seconds": 50.9756
+        },
+        {
+          "runner": "browser_bt",
+          "passed": true,
+          "elapsed_seconds": 10.9542
+        },
+        {
+          "runner": "bt_stream_integration",
+          "passed": true,
+          "elapsed_seconds": 71.2806
+        },
+        {
+          "runner": "browser_bt_stream",
+          "passed": false,
+          "elapsed_seconds": 55.5336
+        },
+        {
+          "runner": "shares_integration",
+          "passed": true,
+          "elapsed_seconds": 35.3635
+        },
+        {
+          "runner": "remote_integration",
+          "passed": true,
+          "elapsed_seconds": 19.1415
+        },
+        {
+          "runner": "browser_remote",
+          "passed": true,
+          "elapsed_seconds": 9.00441
+        },
+        {
+          "runner": "monitor_integration",
+          "passed": true,
+          "elapsed_seconds": 5.66486
+        },
+        {
+          "runner": "delivery_integration",
+          "passed": true,
+          "elapsed_seconds": 0.490209
+        },
+        {
+          "runner": "security_regression",
+          "passed": true,
+          "elapsed_seconds": 29.5108
+        }
+      ]
+    }
+  ],
+  "prior_failures_resolution": {
+    "delivery_integration": "CTest now passes its actual CMake executable via environment.",
+    "security_regression": "Read failure is fatal to keep-alive; trickling headers and bodies and shutdown retested.",
+    "browser_bt_stream": "Requested first piece receives finite libtorrent deadline during focus, removed during background; actual byte and browser playback tests retested."
+  },
+  "review_tools": {
+    "workflow_yaml": "PyYAML 6.0.3; YAML, embedded shell and Python syntax checks passed",
+    "docx_reader": "python-docx 1.2.0, lxml 6.0.2; documents, table grids, source paragraphs and headers validated",
+    "copyright_zip": "ZIP CRC, SHA256 manifest and deterministic generation checked"
+  },
+  "credential_check": {
+    "scanned": "First-party source, tests, docs, deployment and workflow; private key/GitHub token/AWS key patterns",
+    "patterns_found": 0,
+    "private_db_key_pem_torrent_in_source_dirs": 0
+  },
+  "limitations": [
+    "No public swarm or cross-NAT validation.",
+    "No security or performance certification.",
+    "Third-party libraries not instrumented by sanitizers.",
+    "No guarantee that this review finds every vulnerability.",
+    "No per-user physical disk quota; removed BT task files are retained. Use controlled accounts and a separate data volume or OS quotas."
+  ]
+}

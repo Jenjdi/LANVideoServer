@@ -1,0 +1,10 @@
+{
+  "transport": "actual local HTTP tracker + TCP seeder",
+  "payload_bytes": 2452570,
+  "piece_count": 38,
+  "partial_verified_bytes": 196608,
+  "max_observed_peers": 1,
+  "max_observed_download_bytes_per_second": 271651,
+  "sha256": "1585764aaba193abb8743af8bd08df09681c09a8e1df7f928731562a1f5f3406",
+  "restart_completed": true
+}

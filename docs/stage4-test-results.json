@@ -1,0 +1,36 @@
+{
+  "recorded_utc": "2026-10-12T13:22:29.770501+00:00",
+  "command": "/workspace/toolchain/venv/bin/ctest --test-dir build --output-on-failure",
+  "runners": [
+    "integration",
+    "auth_integration",
+    "media_integration",
+    "browser_integration",
+    "uploads_integration",
+    "bt_integration",
+    "browser_bt"
+  ],
+  "counts": [
+    8,
+    23,
+    26,
+    4,
+    7,
+    10,
+    1
+  ],
+  "passed": 79,
+  "failed": 0,
+  "skipped": 0,
+  "runner_elapsed_seconds": [
+    0.95,
+    16.73,
+    30.82,
+    23.84,
+    7.07,
+    57.85,
+    11.71
+  ],
+  "ctest_wall_seconds": 148.99,
+  "scope": "generated local video, real TCP libtorrent seeder/HTTP tracker, actual HTTP/SOCKS5 forwarding proxies and native Chromium; public swarm/NAT untested"
+}

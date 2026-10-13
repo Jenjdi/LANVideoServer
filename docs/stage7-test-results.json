@@ -1,0 +1,197 @@
+{
+  "recorded_utc": "2026-10-12T15:34:39.229592+00:00",
+  "build": {
+    "debug": "passed",
+    "release": "passed",
+    "compiler": "GCC 14.2.0",
+    "cmake": "3.31.10",
+    "type": "Release",
+    "binary": "build-release/lanvideo"
+  },
+  "first_full_run": {
+    "command": "ctest --test-dir build-release --output-on-failure",
+    "runners": [
+      {
+        "name": "integration",
+        "tests": 8,
+        "unittest_seconds": 0.795,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "auth_integration",
+        "tests": 23,
+        "unittest_seconds": 15.457,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "media_integration",
+        "tests": 26,
+        "unittest_seconds": 26.659,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "browser_integration",
+        "tests": 5,
+        "unittest_seconds": 24.601,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "uploads_integration",
+        "tests": 7,
+        "unittest_seconds": 5.239,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "bt_integration",
+        "tests": 10,
+        "unittest_seconds": 52.685,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "browser_bt",
+        "tests": 1,
+        "unittest_seconds": 11.09,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "bt_stream_integration",
+        "tests": 10,
+        "unittest_seconds": 72.435,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "browser_bt_stream",
+        "tests": 1,
+        "unittest_seconds": 58.602,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "shares_integration",
+        "tests": 10,
+        "unittest_seconds": 35.914,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "remote_integration",
+        "tests": 12,
+        "unittest_seconds": 11.822,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "browser_remote",
+        "tests": 1,
+        "unittest_seconds": 9.192,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "monitor_integration",
+        "tests": 8,
+        "unittest_seconds": 5.536,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "name": "delivery_integration",
+        "tests": 3,
+        "unittest_seconds": 0.467,
+        "passed": false,
+        "failed": true
+      }
+    ],
+    "wall_seconds": 332.56,
+    "failed_runners": [
+      "delivery_integration"
+    ],
+    "cause": "Documentation layout was changed to preserve relative links; generated install rules used the earlier flat layout. Reconfigured CMake before rerunning installation checks."
+  },
+  "development_fixes": [
+    "Explicitly typed monitor handlers to resolve template parsing error.",
+    "Pinned HTTP library collapses identical query pairs: validate original target for duplicate decoded keys, including error Range routing.",
+    "Browser audit test uses an explicitly identified test-only markup row; production audit intentionally omits root paths."
+  ],
+  "scope": "Linux local real service/video/libtorrent/proxies/Nginx TLS/Chromium; public/NAT/security levels unverified",
+  "installation_rerun": {
+    "command": "ctest --test-dir build-release --rerun-failed --output-on-failure",
+    "runner": "delivery_integration",
+    "tests": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "wall_seconds": 0.78
+  },
+  "final_coverage": {
+    "runner_count": 14,
+    "tests": 125,
+    "passed": 125,
+    "remaining_failed": 0,
+    "skipped": 0,
+    "basis": "13 complete Release runners passed in initial full execution; installation runner reconfigured and rerun completely. Combined final coverage, not a single clean full run."
+  },
+  "archive_smoke": {
+    "passed": true,
+    "manifest_verified": true,
+    "no_private_state": true,
+    "relocation": true,
+    "health": 200,
+    "anonymous_admin": 401,
+    "default_admin": false,
+    "shutdown_exit_code": 0,
+    "runtime_libraries": "external signature-verified sysroot supplied; not self-contained"
+  },
+  "security_review": {
+    "basis": "executed functional boundaries plus manual source/notice review",
+    "raw_query_duplicate_tests": "passed including literal pairs and encoded aliases",
+    "audit_and_snapshot_secret_tests": "passed",
+    "source_log_locations_reviewed": [
+      "auth.cpp login_failed has no input payload",
+      "bt.cpp bt_proxy_changed records controlled actor/task ID, credentials are encrypted into settings only"
+    ],
+    "dependency_notices": "full verified package notices and relevant common license text retained",
+    "independent_pentest": false,
+    "vulnerability_database_scan": false,
+    "performance_grade": null
+  },
+  "workspace_startup": {
+    "binary": "build-release/lanvideo",
+    "http_results": {
+      "/api/health": 200,
+      "/api/admin/status": 401,
+      "/api/admin/audit": 401,
+      "/api/remote": 401,
+      "/api/shares": 401,
+      "/share": 200
+    },
+    "persistent_counts": {
+      "users": 0,
+      "tasks": 0,
+      "shares": 0
+    },
+    "mode": "local",
+    "admin_initialized": false
+  },
+  "source_listing": {
+    "first_party_files": 33,
+    "first_party_source_lines": 3657,
+    "cpp_header_and_source_lines": 2710,
+    "third_party_code_in_listing": false,
+    "test_fixtures_in_listing": false
+  },
+  "documentation": {
+    "broken_local_links": 0,
+    "copyright_application_submitted": false,
+    "legal_identity_fields": "unfilled placeholders",
+    "systemd_deployment_tested": false
+  }
+}

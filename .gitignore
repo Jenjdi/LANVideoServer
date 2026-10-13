@@ -1,0 +1,7 @@
+build*/
+var/
+.env
+__pycache__/
+.venv/
+dist/
+Testing/

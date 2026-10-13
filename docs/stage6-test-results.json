@@ -1,0 +1,219 @@
+{
+  "recorded_utc": "2026-10-12T14:54:36.540706+00:00",
+  "command": "/workspace/toolchain/venv/bin/ctest --test-dir build --output-on-failure",
+  "initial_run": [
+    {
+      "runner": "integration",
+      "tests": 8,
+      "unittest_seconds": 0.572,
+      "passed": true,
+      "failed": false
+    },
+    {
+      "runner": "auth_integration",
+      "tests": 23,
+      "unittest_seconds": 10.526,
+      "passed": true,
+      "failed": false
+    },
+    {
+      "runner": "media_integration",
+      "tests": 26,
+      "unittest_seconds": 22.152,
+      "passed": true,
+      "failed": false
+    },
+    {
+      "runner": "browser_integration",
+      "tests": 4,
+      "unittest_seconds": 13.552,
+      "passed": true,
+      "failed": false
+    },
+    {
+      "runner": "uploads_integration",
+      "tests": 7,
+      "unittest_seconds": 3.394,
+      "passed": true,
+      "failed": false
+    },
+    {
+      "runner": "bt_integration",
+      "tests": 10,
+      "unittest_seconds": 50.089,
+      "passed": false,
+      "failed": true
+    },
+    {
+      "runner": "browser_bt",
+      "tests": 1,
+      "unittest_seconds": 10.49,
+      "passed": true,
+      "failed": false
+    },
+    {
+      "runner": "bt_stream_integration",
+      "tests": 10,
+      "unittest_seconds": 66.629,
+      "passed": true,
+      "failed": false
+    },
+    {
+      "runner": "browser_bt_stream",
+      "tests": 1,
+      "unittest_seconds": 33.125,
+      "passed": true,
+      "failed": false
+    },
+    {
+      "runner": "shares_integration",
+      "tests": 10,
+      "unittest_seconds": 33.809,
+      "passed": true,
+      "failed": false
+    },
+    {
+      "runner": "remote_integration",
+      "tests": 12,
+      "unittest_seconds": 9.816,
+      "passed": true,
+      "failed": false
+    },
+    {
+      "runner": "browser_remote",
+      "tests": 1,
+      "unittest_seconds": 8.236,
+      "passed": true,
+      "failed": false
+    }
+  ],
+  "initial_ctest_wall_seconds": 263.39,
+  "initial_failures": [
+    "bt_integration: header-size rejection closed socket before client sendall completed; test harness BrokenPipe"
+  ],
+  "fix": "Observe real early 413 at headers without racing a body send; keep size rejection assertion. Close proxy fixture upstream on early disconnect.",
+  "scope": "real local Nginx TLS and scoped sharing; public entry and cross NAT not tested",
+  "bt_rerun": {
+    "command": "ctest --test-dir build --rerun-failed --output-on-failure",
+    "runner": "bt_integration",
+    "passed": 10,
+    "failed": 0,
+    "skipped": 0,
+    "ctest_wall_seconds": 49.62
+  },
+  "setup_repeat": {
+    "command": "bash scripts/setup.sh",
+    "install_succeeded": true,
+    "build_succeeded": true,
+    "runners": [
+      {
+        "runner": "integration",
+        "tests": 8,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "runner": "auth_integration",
+        "tests": 23,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "runner": "media_integration",
+        "tests": 26,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "runner": "browser_integration",
+        "tests": 4,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "runner": "uploads_integration",
+        "tests": 7,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "runner": "bt_integration",
+        "tests": 10,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "runner": "browser_bt",
+        "tests": 1,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "runner": "bt_stream_integration",
+        "tests": 10,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "runner": "browser_bt_stream",
+        "tests": 1,
+        "passed": false,
+        "failed": true
+      },
+      {
+        "runner": "shares_integration",
+        "tests": 10,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "runner": "remote_integration",
+        "tests": 12,
+        "passed": true,
+        "failed": false
+      },
+      {
+        "runner": "browser_remote",
+        "tests": 1,
+        "passed": true,
+        "failed": false
+      }
+    ],
+    "ctest_wall_seconds": 271.2,
+    "failure": "browser_bt_stream: 45-second genuine video completed downloading before native playback start; preserved incomplete-playback assertion and 45s timeout, changed test to 90-second genuine unpadded video to outlast startup window under same real seed cap"
+  },
+  "browser_stream_rerun": {
+    "command": "ctest --test-dir build --rerun-failed --output-on-failure",
+    "runner": "browser_bt_stream",
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "ctest_wall_seconds": 47.52,
+    "fixture": "90 second real unpadded H264 video, same 128 KiB/s source cap and 45s startup timeout, incomplete-progress assertion retained"
+  },
+  "final_coverage": {
+    "runner_count": 12,
+    "test_count": 113,
+    "passed": 113,
+    "remaining_failed": 0,
+    "skipped": 0,
+    "basis": "11 runners passed during setup.sh full regression, failed browser runner fixed and rerun successfully; this is combined final coverage, not a single clean full-suite run"
+  },
+  "workspace_startup": {
+    "command": "bash scripts/run.sh",
+    "health_status": 200,
+    "health": "ok",
+    "anonymous_remote_status": 401,
+    "anonymous_shares_status": 401,
+    "anonymous_share_info_status": 401,
+    "share_page_status": 200,
+    "users": 0,
+    "tasks": 0,
+    "shares": 0,
+    "share_sessions": 0,
+    "proxy_key_mode": "0600",
+    "mode": "local",
+    "bind": "127.0.0.1",
+    "environment_draft": "install_script and start_skill saved; requires publication; fresh-task restore unverified"
+  }
+}

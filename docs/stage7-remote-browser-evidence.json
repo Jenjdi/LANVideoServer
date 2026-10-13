@@ -1,0 +1,41 @@
+{
+  "started_utc": "2026-10-12T15:30:13.327715+00:00",
+  "fixture_sha256": "6dec062db5cfbbece54896cd436b0750c231e938e0bb7b6f546c1cbd7ce0bb03",
+  "scope": "local real Nginx TLS fixture; no public/NAT claim",
+  "browser_test_trust": "only generated leaf SPKI; no blanket ignoreHTTPSErrors",
+  "sandbox": false,
+  "sandbox_scope": "generated local test fixture only",
+  "browser": "154.0.8037.57",
+  "passed": true,
+  "loaded_metadata_seconds": 0.7811,
+  "time_to_currentTime_over_one_second": 1.0179,
+  "decoded_frames": 30,
+  "seek_target_seconds": 8,
+  "seek_completed_seconds": 0.3199,
+  "video": {
+    "width": 320,
+    "height": 180,
+    "duration": 12
+  },
+  "media_responses": [
+    {
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-355417/355418"
+    },
+    {
+      "status": 206,
+      "range": "bytes=327680-",
+      "content_range": "bytes 327680-355417/355418"
+    },
+    {
+      "status": 404,
+      "range": null,
+      "content_range": null
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "post_revoke_media_status": 404,
+  "fragment_removed": true
+}

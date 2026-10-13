@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>轻量级视频共享与传输软件 V1.0</title>
+  <link rel="stylesheet" href="/style.css"><script src="/sha256.min.js" defer></script><script src="/app.js" defer></script>
+</head>
+<body>
+<header><div class="brand">LAN VIDEO <span>V1.0</span></div><div id="account" hidden><span id="identity"></span><button id="logout" type="button">退出</button></div></header>
+<main>
+  <div class="heading"><p class="eyebrow">轻量级视频共享与传输软件</p><h1>共享视频，接着上次看。</h1><p class="muted">浏览器原生播放 · 受控本地上传 · 按用户授权</p></div>
+  <p class="notice" id="transport">当前为 HTTP 开发连接。公网访问需要部署 HTTPS 入口。</p>
+  <p id="message" role="status" aria-live="polite"></p>
+  <section id="login-section" class="panel">
+    <h2>登录</h2><p id="bootstrap-note" class="muted" hidden>管理员尚未初始化。请在服务器终端运行 ./build/lanvideo --init-admin，通过隐藏输入设置自己的密码。</p>
+    <form id="login-form"><label>用户名<input id="username" name="username" autocomplete="username" required maxlength="64"></label><label>密码<input id="password" name="password" type="password" autocomplete="current-password" required></label><button type="submit" class="primary">登录</button></form>
+  </section>
+  <div id="workspace" hidden>
+    <nav><button id="media-tab" class="active" type="button">视频库</button><button id="admin-tab" type="button" hidden>管理</button><button id="tasks-tab" type="button">BT 下载</button><button id="password-tab" type="button">修改密码</button></nav>
+    <section id="library">
+      <div class="section-title"><h2>我的视频</h2><span id="total" class="muted"></span></div>
+      <form id="search-form" class="filters"><input id="search" aria-label="搜索视频" placeholder="搜索文件名" maxlength="200"><select id="format" aria-label="筛选格式"><option value="">全部格式</option><option>mp4</option><option>webm</option><option>mkv</option><option>mov</option><option>m4v</option><option>avi</option><option>ogg</option><option>ogv</option><option>mpeg</option><option>mpg</option><option>ts</option><option>wmv</option></select><button type="submit">搜索</button></form>
+      <div id="media-list" class="cards"></div><p id="empty" class="muted" hidden>暂无可访问的视频。管理员可上传或扫描共享目录，并为普通用户授权。</p>
+      <div class="pagination"><button id="previous" type="button">上一页</button><span id="page-number"></span><button id="next" type="button">下一页</button></div>
+      <section id="player-panel" class="panel" hidden><div class="section-title"><h2 id="player-title"></h2><button id="close-player" type="button">关闭播放器</button></div><video id="player" controls playsinline preload="metadata"></video><p id="playback-status" role="status" class="muted">拖动进度条可定位播放；播放位置会保存到当前账号。</p><button id="retry-bt-playback" type="button" hidden>重试 BT 播放</button><p id="player-error" role="alert"></p></section>
+    </section>
+    <section id="administration" hidden>
+      <div class="two-columns">
+        <section class="panel"><h2>共享目录</h2><form id="root-form"><label>服务器上的绝对目录<input id="root-path" required></label><button type="submit">更新目录</button></form><p class="muted">更换目录会重建索引并清除旧授权与播放位置，请重新扫描和授权。</p><button id="scan" type="button">扫描视频</button><p id="scan-status" role="status"></p></section>
+        <section class="panel"><h2>从本地上传视频</h2><form id="upload-form"><label>选择视频文件<input id="upload-file" type="file" accept=".mp4,.m4v,.webm,.mkv,.mov,.avi,.ogg,.ogv,.mpeg,.mpg,.ts,.wmv" required></label><label><input id="resumable-upload" type="checkbox">启用分块断点续传</label><p class="muted">续传会逐块计算 SHA-256；暂停或刷新后重新选择相同文件并上传即可继续，服务端保留断点 24 小时。</p><p id="upload-limit" class="muted"></p><button type="submit" class="primary" id="upload-button">上传</button><button id="cancel-upload" type="button" hidden>取消上传</button></form><progress id="upload-progress" value="0" max="100" hidden></progress><p id="upload-status" role="status" aria-live="polite"></p><form id="discard-upload-form"><label>放弃未完成的断点编号<input id="discard-upload-id" minlength="32" maxlength="32" required></label><button type="submit">放弃断点</button></form><p class="muted">重名文件将被拒绝。上传完成的视频初始仅管理员可见，请在视频库中授权。</p></section>
+      </div>
+      <section class="panel"><h2>用户管理</h2><form id="create-user-form" class="filters"><input id="new-username" aria-label="新用户名" placeholder="新用户名" required minlength="3" maxlength="64"><input id="new-password" aria-label="新用户密码" placeholder="密码（至少 12 字节）" type="password" autocomplete="new-password" required><select id="new-role" aria-label="角色"><option value="user">普通用户</option><option value="admin">管理员</option></select><button type="submit">创建用户</button></form><div id="user-list"></div></section>
+      <section id="grant-panel" class="panel" hidden><h2 id="grant-title">视频授权</h2><form id="grants-form"><div id="grant-users"></div><button type="submit" class="primary">保存授权</button><button id="cancel-grants" type="button">关闭</button></form></section>
+      <section id="monitor-panel" class="panel"><h2>运行状态与操作审计</h2><p class="muted">显示服务的实际数据库快照。任务暂停计数是请求状态，真实传输状态、速度和 Peer 连接请查看 BT 页面；此处不推测公网连通或性能等级。</p><button id="refresh-monitor" type="button">刷新状态与审计</button><p id="monitor-status" role="status"></p><div id="monitor-summary"></div><h3>最近操作</h3><div id="audit-list"></div><button id="older-audit" type="button" hidden>更早的操作</button></section>
+    </section>
+    <section id="remote-administration" class="panel" hidden>
+      <h2>远程访问与授权分享</h2><p class="muted">HTTPS 反向代理负责外部入口；BT 出站代理负责下载连接。当前未实现 STUN/UDP 打洞，也未做跨 NAT 验证。</p>
+      <p id="remote-status" role="status"></p><button id="test-remote" type="button">测试已配置的 HTTPS 入口</button><p id="remote-test-result" role="status"></p>
+      <form id="create-share-form"><label>分享视频编号<input id="share-media-id" type="number" min="1" required></label><label>有效期<select id="share-ttl"><option value="3600">1 小时</option><option value="86400">1 天</option><option value="604800">7 天</option><option value="30">30 秒（演示）</option></select></label><p class="muted">范围为单个视频读取；接收者可保存视频。普通用户不能签发链接。链接令牌只在创建时返回，请勿公开转发。</p><button type="submit">创建分享链接</button></form>
+      <label>新创建的链接<input id="share-url" readonly aria-label="分享链接"></label><button id="copy-share" type="button">复制链接</button><button id="refresh-shares" type="button">刷新分享列表</button><div id="share-list"></div>
+    </section>
+    <section id="tasks-section" hidden>
+      <section class="panel"><h2>真实 BT 下载任务</h2><p class="muted">支持 v1 种子、TCP Peer 和 HTTP(S) Tracker。任务归当前账号；完成率仅计已通过分片哈希的数据。暂停任务后可以跨重启恢复。可查看视频文件并边下载边播放；只提供已校验分片，缺少区域等待重试。</p><form id="torrent-form"><label>选择 .torrent<input id="torrent-file" type="file" accept=".torrent" required></label><button type="submit">导入种子（默认暂停）</button></form><button id="refresh-tasks" type="button">刷新任务</button><p id="task-status" role="status"></p><div id="task-list"></div></section>
+      <section id="bt-files-panel" class="panel" hidden><h2 id="bt-files-title"></h2><button id="refresh-bt-files" type="button">刷新文件可用情况</button><div id="bt-file-list"></div></section>
+      <section id="bt-admin" class="panel" hidden><h2>BT 出站配置</h2><p class="muted">BT 出站代理只处理下载连接。远程访问由独立 HTTPS 反向代理适配处理。修改代理前须暂停所有任务。代理地址暂限 IPv4；HTTP/SOCKS5 不加密客户端到代理的认证信息，可信网络内使用，公网入口需 HTTPS。</p><form id="download-root-form"><label>新任务的服务器下载目录<input id="download-root" required></label><button type="submit">更新下载目录</button></form><form id="proxy-form"><label>出站代理<select id="proxy-type"><option value="none">直接连接</option><option value="socks5">SOCKS5</option><option value="http">HTTP</option></select></label><label>代理 IPv4<input id="proxy-host" placeholder="127.0.0.1"></label><label>端口<input id="proxy-port" type="number" min="1" max="65535"></label><label>超时（毫秒）<input id="proxy-timeout" type="number" min="100" max="10000" value="3000" required></label><label>用户名（可选）<input id="proxy-user" autocomplete="off"></label><label>密码（可选）<input id="proxy-password" type="password" autocomplete="off"></label><p id="proxy-summary" class="muted"></p><button type="submit">保存出站代理</button></form><form id="proxy-test-form"><label>测试目标 IPv4<input id="proxy-test-host" required></label><label>测试目标 TCP 端口<input id="proxy-test-port" type="number" min="1" max="65535" required></label><button type="submit">实际连接测试</button></form><p id="proxy-status" role="status"></p></section>
+    </section>
+    <section id="password-section" class="panel" hidden><h2>修改密码</h2><form id="password-form"><label>当前密码<input id="old-password" type="password" autocomplete="current-password" required></label><label>新密码<input id="replacement-password" type="password" autocomplete="new-password" required></label><label>确认新密码<input id="confirm-password" type="password" autocomplete="new-password" required></label><button type="submit">修改并重新登录</button></form></section>
+  </div>
+</main><footer>阶段 5：认证、上传续传、局域网播放与真实 BT 下载已实现；BT 目前通过本机 TCP/Tracker/代理测试，公网互通待验证。BT 分片播放已通过本机真实视频验证，远程访问待开发。</footer>
+<dialog id="reset-dialog"><form id="reset-form"><h2>重置用户密码</h2><label>新密码<input id="reset-password" type="password" autocomplete="new-password" required></label><label>确认密码<input id="reset-confirm" type="password" autocomplete="new-password" required></label><button type="submit">确认重置</button><button id="reset-cancel" type="button">取消</button></form></dialog>
+</body></html>

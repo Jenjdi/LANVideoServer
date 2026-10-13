@@ -1,0 +1,24 @@
+# Review paths/user and create writable directories before installing.
+# This template was not launched as a system service in the cloud container.
+[Unit]
+Description=LANVideoServer V1.0
+After=network.target
+
+[Service]
+Type=simple
+User=lanvideo
+Group=lanvideo
+WorkingDirectory=/opt/lanvideo
+EnvironmentFile=/etc/lanvideo/environment
+ExecStart=/opt/lanvideo/bin/lanvideo
+UMask=0077
+NoNewPrivileges=true
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGTERM
+TimeoutStopSec=15
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

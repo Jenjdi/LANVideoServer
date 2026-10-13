@@ -1,0 +1,206 @@
+{
+  "recorded_utc": "2026-10-12T14:08:48.738447+00:00",
+  "browser": "154.0.8037.57",
+  "payload_bytes": 4095098,
+  "fixture": "45 seconds 640x360 H264 faststart MP4, zero padding bytes",
+  "fixture_sha256": "48e9e669c70428910cdf31d51002cb86a506d625d7ed77872f739910d3ba9400",
+  "source_upload_limit_bytes_per_second": 131072,
+  "startup_seconds": 17.33642241400048,
+  "verified_progress_at_playback_start": 0.49610925062110844,
+  "decoded_frames_at_start": 29,
+  "seek_seconds": 9.419639175999691,
+  "seek_target_seconds": 35,
+  "saved_position_seconds": 35.000237,
+  "waiting_events": 2,
+  "stalled_events": 0,
+  "events": [
+    {
+      "event": "error",
+      "time": 2843.2000000001863,
+      "position": 0
+    },
+    {
+      "event": "error",
+      "time": 5194.799999999814,
+      "position": 0
+    },
+    {
+      "event": "error",
+      "time": 9221.900000000373,
+      "position": 0
+    },
+    {
+      "event": "error",
+      "time": 13246.900000000373,
+      "position": 0
+    },
+    {
+      "event": "error",
+      "time": 17270.400000000373,
+      "position": 0
+    },
+    {
+      "event": "loadedmetadata",
+      "time": 19381.700000000186,
+      "position": 0
+    },
+    {
+      "event": "playing",
+      "time": 19382.400000000373,
+      "position": 0
+    },
+    {
+      "event": "seeking",
+      "time": 20414.599999999627,
+      "position": 35
+    },
+    {
+      "event": "waiting",
+      "time": 20414.700000000186,
+      "position": 35
+    },
+    {
+      "event": "error",
+      "time": 22433.5,
+      "position": 35
+    },
+    {
+      "event": "loadedmetadata",
+      "time": 24484.599999999627,
+      "position": 35
+    },
+    {
+      "event": "seeking",
+      "time": 24484.799999999814,
+      "position": 35
+    },
+    {
+      "event": "waiting",
+      "time": 24484.799999999814,
+      "position": 35
+    },
+    {
+      "event": "seeked",
+      "time": 29814.700000000186,
+      "position": 35.001481
+    },
+    {
+      "event": "playing",
+      "time": 29814.799999999814,
+      "position": 35.001583
+    }
+  ],
+  "responses": [
+    {
+      "status": 503,
+      "range": "bytes=0-",
+      "content_range": null,
+      "observed_seconds": 5986.683847155
+    },
+    {
+      "status": 503,
+      "range": "bytes=0-",
+      "content_range": null,
+      "observed_seconds": 5989.029807081
+    },
+    {
+      "status": 503,
+      "range": "bytes=0-",
+      "content_range": null,
+      "observed_seconds": 5993.060630071
+    },
+    {
+      "status": 503,
+      "range": "bytes=0-",
+      "content_range": null,
+      "observed_seconds": 5997.085219681
+    },
+    {
+      "status": 503,
+      "range": "bytes=0-",
+      "content_range": null,
+      "observed_seconds": 6001.109101088
+    },
+    {
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-1048575/4095098",
+      "observed_seconds": 6003.217884138
+    },
+    {
+      "status": 503,
+      "range": "bytes=2719744-",
+      "content_range": null,
+      "observed_seconds": 6006.27104267
+    },
+    {
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-1048575/4095098",
+      "observed_seconds": 6008.321034
+    },
+    {
+      "status": 206,
+      "range": "bytes=2719744-",
+      "content_range": "bytes 2719744-2752511/4095098",
+      "observed_seconds": 6009.725363486
+    },
+    {
+      "status": 206,
+      "range": "bytes=2752512-",
+      "content_range": "bytes 2752512-2818047/4095098",
+      "observed_seconds": 6010.227833735
+    },
+    {
+      "status": 206,
+      "range": "bytes=2818048-",
+      "content_range": "bytes 2818048-2883583/4095098",
+      "observed_seconds": 6010.741322307
+    },
+    {
+      "status": 206,
+      "range": "bytes=2883584-",
+      "content_range": "bytes 2883584-3014655/4095098",
+      "observed_seconds": 6011.246265865
+    },
+    {
+      "status": 206,
+      "range": "bytes=3014656-",
+      "content_range": "bytes 3014656-3080191/4095098",
+      "observed_seconds": 6012.146985193
+    },
+    {
+      "status": 206,
+      "range": "bytes=3080192-",
+      "content_range": "bytes 3080192-3145727/4095098",
+      "observed_seconds": 6012.749196702
+    },
+    {
+      "status": 206,
+      "range": "bytes=3145728-",
+      "content_range": "bytes 3145728-3211263/4095098",
+      "observed_seconds": 6013.152308447
+    },
+    {
+      "status": 206,
+      "range": "bytes=3211264-",
+      "content_range": "bytes 3211264-3276799/4095098",
+      "observed_seconds": 6013.651102671
+    },
+    {
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-1048575/4095098",
+      "observed_seconds": 6014.350519719
+    },
+    {
+      "status": 206,
+      "range": "bytes=2719744-",
+      "content_range": "bytes 2719744-3342335/4095098",
+      "observed_seconds": 6014.453444588
+    }
+  ],
+  "sandbox": false,
+  "sandbox_scope": "generated local fixture only",
+  "passed": true
+}
